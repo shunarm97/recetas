@@ -16,8 +16,9 @@ const Categories = db.define('categories', {
         unique: true
     }
 }, {
+    //? evita que se cree las columnas createdAt y updateAt
     timestamps: false
 })
 
 
-models.exports = Categories
+module.exports = Categories

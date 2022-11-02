@@ -12,6 +12,8 @@ const {port} = require('./config')
 const usersRouter = require('./users/users.router')
 const authRouter = require('./auth/auth.router')
 const initModels = require('./models/initmodels')
+const categoriesRouter = require('./categories/categories.router')
+
 
 app.use(express.json())
 
@@ -45,7 +47,7 @@ app.get('/',(req,res) => {
 
 app.use('/api/v1/users', usersRouter)
 app.use('/api/v1/auth', authRouter)
-
+app.use('/api/v1/categories', categoriesRouter)
 
 
 app.listen(port, () => {

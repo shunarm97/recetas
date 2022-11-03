@@ -1,7 +1,7 @@
 //? Dependencies
 const express = require('express');
 const db = require('./utils/database')
-
+const cors = require('cors')
 //? initial configs
 const app = express()
 
@@ -13,9 +13,10 @@ const usersRouter = require('./users/users.router')
 const authRouter = require('./auth/auth.router')
 const initModels = require('./models/initmodels')
 const categoriesRouter = require('./categories/categories.router')
-
+const typesRouter = require('./types/types.router')
 
 app.use(express.json())
+app.use(cors())
 
 db.authenticate()
     .then(() => {
@@ -48,7 +49,7 @@ app.get('/',(req,res) => {
 app.use('/api/v1/users', usersRouter)
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/categories', categoriesRouter)
-
+app.use('/api/v1/types', typesRouter)
 
 app.listen(port, () => {
     console.log(`Server started at port ${port}`)

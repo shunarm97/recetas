@@ -13,7 +13,8 @@ const usersRouter = require('./users/users.router')
 const authRouter = require('./auth/auth.router')
 const initModels = require('./models/initmodels')
 const categoriesRouter = require('./categories/categories.router')
-const typesRouter = require('./types/types.router')
+//const typesRouter = require('./types/types.router')
+const recipesRouter = require('./recipes/recipes.router')
 
 app.use(express.json())
 app.use(cors())
@@ -49,7 +50,8 @@ app.get('/',(req,res) => {
 app.use('/api/v1/users', usersRouter)
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/categories', categoriesRouter)
-app.use('/api/v1/types', typesRouter)
+//app.use('/api/v1/types', typesRouter)
+app.use('/api/v1/recipes', recipesRouter)
 
 app.listen(port, () => {
     console.log(`Server started at port ${port}`)

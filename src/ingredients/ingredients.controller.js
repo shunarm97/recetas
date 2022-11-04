@@ -56,6 +56,8 @@ const addIngredientToUser = async(data) => {
 }
 
 
+
+
 module.exports = {
     getAllIngredients,
     getIngredientById,

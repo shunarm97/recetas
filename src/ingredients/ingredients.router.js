@@ -14,7 +14,6 @@ router.route('/')
     .get(ingredientServices.getAllIngredients)
     .post(
         passport.authenticate('jwt', {session: false}),
-        adminMiddleware,
         ingredientServices.postIngredient
     )
 

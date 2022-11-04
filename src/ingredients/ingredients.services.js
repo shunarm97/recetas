@@ -1,10 +1,10 @@
-const ingredientControllers = require("./ingredients.controller");
+const ingredientControllers = require('./ingredients.controller');
 
 const getAllIngredients = (req, res) => {
   ingredientControllers
     .getAllIngredients()
-    .then((data) => {
-      res.status(200).json(data);
+    .then((response) => {
+      res.status(200).json(response);
     })
     .catch((err) => {
       res.status(400).json({ message: err.message });
@@ -15,9 +15,9 @@ const getIngredientById = (req, res) => {
   const id = req.params.ingredient_id;
   ingredientControllers
     .getIngredientById(id)
-    .then((data) => {
+    .then((response) => {
       if (data) {
-        res.status(200).json(data);
+        res.status(200).json(response);
       } else {
         res.status(404).json({ message: "Invalid ID", id });
       }
@@ -37,8 +37,8 @@ const postIngredient = (req, res) => {
         typeId,
         urlImg,
       })
-      .then((data) => {
-        res.status(201).json(data);
+      .then((response) => {
+        res.status(201).json(response);
       })
       .catch((err) => {
         res.status(400).json({ message: err.message });
@@ -60,8 +60,8 @@ const patchIngredient = (req, res) => {
   const id = req.params.ingredient_id;
   ingredientControllers
     .updateIngredient(id, { name, typeId, urlImg })
-    .then((data) => {
-      if (data[0]) {
+    .then((response) => {
+      if (response[0]) {
         res
           .status(200)
           .json({ message: `Ingredient with ID: ${id} edited succesfully` });
@@ -88,8 +88,8 @@ const deleteIngredient = (req, res) => {
     })
     .catch((err) => {
       res.status(400).json({ message: err.message });
-    });
-};
+    })
+}
 
 const postIngredientToUser = (req, res) => {
   const userId = req.user.id;
@@ -98,8 +98,8 @@ const postIngredientToUser = (req, res) => {
 
   if (amount) {
     ingredientControllers.addIngredientToUser({userId, ingredientId, amount})
-        .then((data) => {
-            res.status(201).json(data)
+        .then((response) => {
+            res.status(201).json(response)
         })
         .catch((err) => {
             res.status(400).json({message: err.message})
@@ -110,9 +110,9 @@ const postIngredientToUser = (req, res) => {
       fields: {
         amount: "string",
       },
-    });
+    })
   }
-};
+}
 
 module.exports = {
   getAllIngredients,
@@ -121,4 +121,4 @@ module.exports = {
   patchIngredient,
   deleteIngredient,
   postIngredientToUser
-};
+}

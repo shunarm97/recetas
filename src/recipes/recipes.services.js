@@ -1,5 +1,5 @@
 
-const { response } = require('express')
+
 const recipesControllers = require('./recipes.controllers')
 
 
@@ -113,12 +113,24 @@ const deleteRecipe = (req, res) => {
 }
 
 
+const getUserRecipes = (req, res) => {
+    const userId = req.user.id
+    recipesControllers.getMyRecipes(userId) 
+    .then((response) => {
+        res.status(200).json(response)
+    })
+    .catch((err) => {
+        res.status(400).json({message: err.message})
+    })
+} 
+
 module.exports = {
     getAllRecipes,
     getRescipeById,
     createRecipe,
     patchRecipe,
-    deleteRecipe
+    deleteRecipe,
+    getUserRecipes
 
 }
 
